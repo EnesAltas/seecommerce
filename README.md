@@ -62,8 +62,8 @@ First of all you need download [NodeJS](https://nodejs.org/en/) if you haven't i
 2- Type:
 
 ```
-1. $ npm i
-2. $ npm start
+$ npm i
+$ npm start
 ```
 ### Everything is ready!
 
