@@ -45,7 +45,7 @@ First of all you need download [NodeJS](https://nodejs.org/en/) if you haven't i
 
 4.1- The part before @ in the connection string that appears on the screen is your username and password.
 
-### config.json Setup (IMPORTANT!) (What to do before starting)
+### config.json Setup (IMPORTANT!) (What to do before starting) [config.json](https://github.com/EnesAltas/seecommerce/blob/master/config.json)
 
 ```
 {
