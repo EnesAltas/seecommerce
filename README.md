@@ -51,7 +51,7 @@ First of all you need download [NodeJS](https://nodejs.org/en/) if you haven't i
 {
   "Email":"<shopMailSenderEmail>", //this your mail sender email. example='info@shop.com'
   "EmailPass":"<shopMailSenderPassword>", //this your mail sender password. example='123456789+'
-  "MongoPass":"MongoString<user:password>", //this your got data from instruction 4.1. . example='user:password'
+  "MongoPass":"<user:password>", //this your got data from instruction 4.1. . example='user:password'
   "MongoIp":"<MongoDBIP>" //this your got data from instruction 4. . example='testshop.mongodb.net'
 }
 ```
