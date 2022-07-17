@@ -1,0 +1,6 @@
+{
+  "Email":"<shopMailSenderEmail>",
+  "EmailPass":"<shopMailSenderPassword>",
+  "MongoPass":"MongoString<user:password>",
+  "MongoIp":"<MongoDBIP>"
+}
