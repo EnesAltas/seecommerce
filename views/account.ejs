@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <%-include('./component/head')%> 
+    <link rel="stylesheet" type="text/css" href="../public/css/profile.css"/>
+</head>
+<body>
+            <%-include('./component/topinfo')%>
+            <%-include('./component/navbar')%>
+            <div class="side-keeper">
+                <div class="opener"> > </div>
+                <%-include('./component/leftmenu')%>
+                <aside class="main">
+                    <h1 style="color: #D10024; font-family: 'Poppins'; margin-bottom: 10px;"><i class="fa-solid fa-user"></i> Account</h1>
+                    <div class="profile-info">
+                        <div class="info-top">
+                            <h1 style="background: #d10024;padding: 15px;border-radius: 10px 10px 0 0;">Account Information</h1>
+                            <div class="info-data">
+                                <div style="display: flex; flex-direction: column; margin-right: 10px;">
+                                    <div class="user-data">
+                                        <p>Username:</p>
+                                        <p><%=user.username %></p>
+                                    </div>
+                                    <div class="user-data">
+                                        <p>E-Mail:</p>
+                                        <p><%=user.email %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 style="background: #d10024; padding: 5px; padding-left: 15px; font-family: 'Poppins'; font-size: 18px;">Account Settings</h1>
+                        <div class="info-bottom">
+                            <div>
+                                <p style="margin-bottom: 5px;">Change Password</p>
+                                <div id="inputs" class="inputs">
+                                    <input type="password" name="oldpassword" placeholder="Old Password" required="" class="changepass"/>
+                                    <input type="password" name="newpassword" placeholder="New Password" required="" class="changepass"/>
+                                    <input type="password" name="repassword" placeholder="New Password Repeat" required="" class="changepass"/>
+                                </div>
+                                <button class="save-button">Save</button>
+                            </div>
+                        </div>
+                        <div class="notify-keep">
+                            <span id="notify"></span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <%-include('./component/footer')%> 
+            <script src="../public/script/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <%-include('./component/head')%>
+    <link rel="stylesheet" href="../public/css/product.css">
+</head>
+<body>
+    <%if(sess.sessid){ %>
+        <%-include('./component/topinfo')%> 
+    <%}else{ %> 
+        <%-include('./component/topinfonotlogin')%> 
+    <% } %> 
+    <%-include('./component/navbar')%>
+    <div class="product-keeper">
+        <div class="product-editer">
+            <div class="product-image">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <% if(!product.productimages[0]){ %>
+                            <div class="swiper-slide">
+                                <img src="../public/img/imagenotavailable.jpg"/>
+                            </div>
+                            <%}else{%>
+                                <%product.productimages.forEach(prod => {%>
+                                    <div class="swiper-slide">
+                                        <img src="../public/img/<%=prod.image%>"/>
+                                    </div>
+                                <%});%>
+                        <% } %>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name">
+                    <h2><%=product.producthead%></h2>
+                </div>
+                <div class="product-price"><%=product.productprice%><%=shopconfig.shopcurrency%></div>
+                <div class="product-about">
+                    <h1>Product Info</h1>
+                    <p><%=product.productinfo%></p>
+                </div>
+                <div class="cart-button">
+                    <div class="cart-qty">
+                        <select name="qty" id="qty">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="add-cart" data-value="<%=product.productid%>" onclick="updateCart(this.getAttribute('data-value'))">ADD TO CART</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-include('./component/footer')%>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="../public/script/product.js"></script>
+</body>
+</html>

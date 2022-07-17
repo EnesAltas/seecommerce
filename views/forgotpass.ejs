@@ -1,0 +1,48 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <%-include('./component/head')%>
+		<link rel="stylesheet" type="text/css" href="../public/css/passnew.css" />
+        <script type="text/javascript">
+          $(document).ready(function(){
+      
+            $( "#form" ).submit(function(event) {
+              event.preventDefault();
+      
+              $.ajax({
+                type: 'POST',
+                url: '/passgiver',
+                data: $('#form').serialize(),
+                dataType: "json",
+                success: function(response){
+                  $('#form')[0].reset();
+                  document.getElementById("check").innerHTML=response.Success;
+                  document.getElementById("check").style.display= "-webkit-flex";
+                         if (response.Success=="Success!") {
+                          window.location.replace("/login");
+                         };
+                       },
+                       error: function() {
+                       }
+                     })
+            });
+      
+          });
+        </script>
+      </head>
+    <body>
+      <header>
+    </header>
+    <div class="login-page">
+      <div class="form">
+        <form id="form" class="register-form" method="POST" style="padding-bottom: 15px;">
+          <input type="email" name="email" placeholder="E-Mail" required="" class="form-control"><br/>
+          <button type="submit">RESET PASSWORD</button>
+          </form>
+          <span id="check"></span>
+          <p class="message">Are you have already account ? <a href="login">Login</a></p>
+      </div>
+    </div>
+    <script src="/public/script/login.js"></script>
+    </body>
+    </html>

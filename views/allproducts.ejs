@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <%-include('./component/head')%>
+    <link rel="stylesheet" href="../public/css/allproducts.css">
+</head>
+<body>
+    <%if(sess.sessid){ %>
+        <%-include('./component/topinfo')%> 
+    <%}else{ %> 
+        <%-include('./component/topinfonotlogin')%> 
+    <% } %> 
+    <%-include('./component/navbar')%>
+    <div class="main">
+        <div class="slider-products">
+        <div class="category-head"><%=head %></div>
+        <div class="category-products">
+                <%product.forEach(prod => { %>
+                    <a href="/product/<%=prod.url %> ">
+                        <div class="slider-product">
+                            <img src="../public/img/<% if(prod.productimages[0]){ %><%=prod.productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
+                            <div class="product-title"><%=prod.producthead %></div>
+                            <div class="prodct-price"><%=prod.productprice %><%=shopconfig.shopcurrency%></div>
+                        </div>
+                    </a>
+                <%});%>
+        </div>
+        </div>
+    </div>
+    <script src="../public/script/allproducts.js"></script>
+    <%-include('./component/footer')%>
+</body>
+</html>

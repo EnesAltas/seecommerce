@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%-include('./component/head')%>
+<link rel="stylesheet" type="text/css" href="../public/css/login.css" />
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $( "#form" ).submit(function(event) {
+      event.preventDefault();
+
+      $.ajax({
+        type: 'POST',
+        url: '/userlogin',
+        data: $('#form').serialize(),
+        dataType: "json",
+        success: function(response){
+          $('#form')[0].reset();
+          document.getElementById("check").innerHTML=response.Success;
+          document.getElementById("check").style.display= "-webkit-flex";
+          console.log(response)
+                 if (response.redirect=="true") {
+                  window.location.replace(response.location);
+                 };
+               },
+               error: function() {
+               }
+             })
+    });
+  });
+</script>
+</head>
+<body>
+<div class="login-page">
+  <div class="form">
+    <form id="form" class="login-form" method="POST" style="padding-bottom: 15px;">
+      <input type="username" name="username" placeholder="Username" required="" class="form-control" id="form-username" autocorrect="off" autofocus="autofocus" autocomplete="off"><br/>
+      <input type="password" id="pasword" name="password" placeholder="Password" required="" class="form-control"/><br/>
+      <input id="items" name="items" type="text" hidden>
+      <button type="submit">LOGIN</button>
+    </form>
+    <span id="check"></span>
+    <p class="message">Are you forgot your password ? <a href="resetpassword">Reset Password</a></p>
+	<p class="message">Are you didn't sign up ? <a href="signup">Sign Up</a></p>
+  </div>
+</div>
+<script src="/public/script/login.js"></script>
+</body>
+</html>

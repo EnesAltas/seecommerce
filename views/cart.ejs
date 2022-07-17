@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <%-include('./component/head')%>
+    <link rel="stylesheet" href="../public/css/cart.css">
+    <meta name="shopcurrency" content="<%=shopconfig.shopcurrency%>">
+</head>
+<body>
+    <%if(sess.sessid){ %>
+        <%-include('./component/topinfo')%> 
+    <%}else{ %> 
+        <%-include('./component/topinfonotlogin')%> 
+    <% } %> 
+    <%-include('./component/navbar')%>
+    <div class="cart-keeper">
+        <div class="cart-main">
+            <div class="cart-items">
+                <div class="cart-head">CART</div>
+                <% var total = 0 %>
+                <% if(sess.isLoggedIn) {%>
+                    <div class="cart-all-items">
+                        <% if(sess.cart.length == 0) {%>
+                            <h1>You have no items in your cart!</h1>
+                        <% } %>  
+                    <%product.forEach(element => { %>
+                        <div class="item">
+                            <div class="delete-button" data-value="<%=element.productid%>" onclick="removeItem(this,this.getAttribute(['data-value']))">X</div>
+                            <img style="width: 100px;" src="../public/img/<% if(element.productimages[0]){ %><%=element.productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
+                            <div class="product"><%=element.producthead%></div>
+                            <div class="price"><%=element.productprice%><%=shopconfig.shopcurrency%></div>
+                            <div class="quantity"><%=user.cart.find(item => item.productId === element.productid).qty %> </div>
+                            <div class="subtotal"><%=user.cart.find(item => item.productId === element.productid).qty*element.productprice  %><%=shopconfig.shopcurrency%> </div>
+                        </div>
+                        <% total += user.cart.find(item => item.productId === element.productid).qty*element.productprice %> 
+                    <% }); %> 
+                    </div>
+                <%}else{%>
+                    <div class="cart-all-items"></div>
+                <% } %>  
+            </div>
+            <% if(sess.cart.length == 0){%>
+            <div class="cart-subtotal" onclick="alert('You have no items in your cart!')">
+            <% }else{ %>
+            <div class="cart-subtotal" onclick="if(document.getElementsByClassName('total-price-price')[0].innerHTML == '0<%=shopconfig.shopcurrency%>'){alert('You have no items in your cart!')}else{location.href = '/pay'}">
+            <% } %>  
+                <div class="cart-subtotal-price">
+                    <div style="margin-right: 10px;" class="total-price-head">TOTAL:</div>
+                    <div class="total-price-price"><%=total%><%=shopconfig.shopcurrency%></div>
+                </div>
+                    <div class="pay-button">PAY NOW!</div>
+            </div>
+        </div>
+    </div>
+    <%-include('./component/footer')%>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <% if(sess.isLoggedIn){ %>
+        <script src="../public/script/cartlogged.js"></script>
+    <% }else{ %>
+        <script src="../public/script/cart.js"></script>
+    <% } %> 
+</body>
+</html>

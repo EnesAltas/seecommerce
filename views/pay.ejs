@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <%-include('./component/head')%>
+    <link rel="stylesheet" type="text/css" href="../public/css/pay.css" />
+</head>
+
+<body>
+    <%if(sess.sessid){ %>
+    <%-include('./component/topinfo')%>
+    <%}else{ %>
+    <%-include('./component/topinfonotlogin')%>
+    <% } %>
+    <%-include('./component/navbar')%>
+    <div class="card-holder" style="text-align: center;">
+        <div class="main-card" style="box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;">
+            <aside class="maincard-data">
+                Username: <%= user.username %> 
+                <br>
+                Total Payment: <%=total  %> <%=shopconfig.shopcurrency%>
+            </aside>
+            <form style='display:grid;' action="" method="post">
+                <div class="main-payment" style="background: #f9f9f9; padding-bottom: 17px; padding-top: 17px;">
+                    <div class="form-group" style="text-align: -webkit-left;">
+                        <label for="cardHolder">Phone Number</label>
+                        <input style="width:220px" placeholder="0xxxxxxxxxx" type="numner" id="phoneNumber"
+                            name="user_phone" class="form-control" maxlength="11" size="11" required="">
+                    </div>
+                    <div class="form-group" style="text-align: -webkit-left;">
+                        <label for="mail">E-Mail</label>
+                        <input style="width: 220px;" type="email" id="mail" name="email" class="form-control" value=""
+                            required="">
+                    </div>
+                    <div class="form-group" style="text-align: -webkit-left;">
+                        <label for="cardHolder">Address</label>
+                        <input style="width:220px" type="text" id="userAdress" name="user_address" class="form-control"
+                            required="">
+                    </div>
+                    <div class="form-group" style="text-align: -webkit-left;">
+                        <label for="cardHolder">Card Owner Name Surname</label>
+                        <input style="width: 220px;" type="text" onkeyup="namewriter(this.value)" id="cardHolder"
+                            name="cc_owner" autocomplete="off" autocorrect="off" class="form-control" required="">
+                    </div>
+                    <div class="form-group" style="text-align: -webkit-left;">
+                        <label for="card_number">Card Number</label>
+                        <input style="width: 220px;" maxlength="16" size="16" type="text" id="card_number"
+                            name="card_number" class="form-control" required="">
+                    </div>
+                    <div class="form-group" id="son">
+                        <label for="cvv" style="text-align: -webkit-left;" required="">CVV2</label>
+                        <input type="text" id="cvv" name="cvv" maxlength="3" size="3"
+                            class="form-control form-control-info" data-inputmask="'mask':'999'" inputmode="text"
+                            required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="ay">Expriy Date</label>
+                        <select id="ay" name="expiry_month" style="margin-bottom: 8px;" class="form-control" required>
+                            <option disabled selected value="">MONTH</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <select id="yıl" name="expiry_year" class="form-control" required>
+                            <option disabled selected value="">YEAR</option>
+                            <option value="22">2022</option>
+                            <option value="23">2023</option>
+                            <option value="24">2024</option>
+                            <option value="25">2025</option>
+                            <option value="26">2026</option>
+                            <option value="27">2027</option>
+                            <option value="28">2028</option>
+                            <option value="29">2029</option>
+                            <option value="30">2030</option>
+                            <option value="31">2031</option>
+                        </select>
+                    </div>
+                    <p style="display: inline-grid; margin-top: 15px; font-family: 'Poppins'; font-size: 14px; margin-bottom: 20px;">seNe Software does not store any of your information, only when you register. stores the information you provide.</p>
+                    <div>
+                        <img src="../public/img/paytr.jpg" height="150" style="height: 60px; object-fit: contain;">
+                        <img src="../public/img/providers.jpg" style="height: 60px;"></div>
+                </div>
+                <span id="check"></span>
+                <button type="submit" class="agree">Make Payment</button>
+            </form>
+        </div>
+    </div>
+    <%-include('./component/footer')%>
+    <script src="../public/script/pay.js"></script>
+</body>
+
+</html>

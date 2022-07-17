@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <%-include('./component/head')%> 
+        <link rel="stylesheet" type="text/css" href="../public/css/shopsettings.css"/>
+    </head>
+        <body>
+            <%-include('./component/topinfo')%>
+            <%-include('./component/navbar')%>
+            <div class="side-keeper">
+                <div class="opener"> > </div>
+                <%-include('./component/menuadmin')%>
+                <aside class="main">
+                    <h1 style="color: #D10024; font-family: 'Poppins'; margin-bottom: 10px;"><i class="fa-solid fa-gears"></i>Shop Settings</h1>
+                    <div class="settings-keeper">
+                        <div class="settings-inputs">
+                            <div class="shopname-input">
+                                <div>Shop Name</div>
+                                <input id="shopname" type="text" value="<%=shopconfig.shopname %>"/>
+                            </div>
+                            <div class="shopdomain-input">
+                                <div>Shop Domain</div>
+                                <input id="shopdomain" type="text" value="<%=shopconfig.shopdomain %>"/>
+                            </div>
+                            <div class="shopmail-input">
+                                <div>Shop E-Mail</div>
+                                <input id="shopmail" type="text" value="<%=shopconfig.shopmail %>"/>
+                            </div>
+                            <div class="shopphone-input">
+                                <div>Shop Phone</div>
+                                <input id="shopphone" type="text" value="<%=shopconfig.shopphone %>"/>
+                            </div>
+                            <div class="shopcurrency-input">
+                                <div>Shop Currency</div>
+                                <input id="shopcurrency" type="text" value="<%=shopconfig.shopcurrency%>"/>
+                            </div>
+                            <div class="shopabout-input">
+                                <div>Shop About</div>
+                                <textarea style="max-width: 660px; width: 100%;" id="shopabout"><%=shopconfig.shopabout%></textarea>
+                            </div>
+                            <div class="shopthumbnail-input">
+                                <div>Shop Thumbnail</div>
+                                <input style="width: -webkit-fill-available;" id="shopthumbnail" type="file"/>
+                                <div class="shop-thumbnails">
+                                    <img style="width: 150px; height: 150px;" src="../public/img/shop/<%=shopconfig.shopthumbnail  %> ">
+                                </div> 
+                            </div>
+                            <div style="margin-bottom: 20px;" class="shopbannerimages-input">
+                                <div>Shop Banner Images Suggested Size(2560 X 1003)</div>
+                                <input style="width: -webkit-fill-available;" id="shopbannerimages" type="file" multiple/>
+                                <div class="shop-banners">
+                                    <% shopconfig.shopbannerimages.forEach(banner => {%>
+                                        <img title="Click to delete" data-value="<%=banner.imagen%>" onclick="deleteBanner(this.getAttribute('data-value'))" style="margin-right: 10px; width: 200px; height: 100px; cursor: pointer;" src="../public/img/shop/<%=banner.imagen %> "/>
+                                    <%  }); %> 
+                                </div>
+                            </div>
+                            <div class="button-keeper">
+                                <div class="save-button" onclick="saveChanges()">Save Changes</div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <%-include('./component/footer')%> 
+            <script src="../public/script/shopsettings.js"></script>
+        </body>
+</html>

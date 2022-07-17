@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <%-include('./component/head')%> 
+        <link rel="stylesheet" type="text/css" href="../public/css/products.css"/>
+      </head>
+        <body>
+            <%-include('./component/topinfo')%>
+            <%-include('./component/navbar')%>
+            <div class="side-keeper">
+                <div class="opener"> > </div>
+                <%-include('./component/menuadmin')%>
+                <aside class="main">
+                    <h1 style="color: #D10024; font-family: 'Poppins'; margin-bottom: 10px;"><i class="fa-solid fa-boxes-stacked"></i>Products</h1>
+                    <div class="product-menu">
+                        <ul>
+                            <li id="addProduct">Add Product</li>
+                        </ul>
+                    </div>
+                    <div class="product-show" id="productsholder">
+                        <div class="product addNew">
+                            <div class="product-image">
+                                <div class="image-text">Product İmages</div>
+                                <div class="image-images">
+                                    <input style="width: 100%;" type="file" name="productImage" id="imgInp" multiple>
+                                    <div class="image-preview"></div>
+                                </div>
+                            </div>
+                            <div class="product-data">
+                                <div class="product-head">
+                                    <div class="head-text">Product Name</div>
+                                    <input id="nhead" placeholder="Product Name" type="text"/>
+                                </div>
+                                <div class="product-price">
+                                    <div class="price-text">Product Price</div>
+                                    <input id="nprice" placeholder="Product Price" type="number"/>
+                                </div>
+                                <div class="product-stock">
+                                    <div class="stock-text">Product Stock</div>
+                                    <input id="nstock" placeholder="Product Stock Count" type="number"/>
+                                </div>
+                                <div class="product-category">
+                                    <div class="stock-text">Product Category</div>
+                                    <select id="ncategory" style="outline: none;">
+                                        <option value="">Please choose an category</option>
+                                        <option value="new">Create New</option>
+                                        <% var productCategory = product.map(x => x.productcategory) %>
+                                        <% var uniqueCategory = [...new Set(productCategory)] %>
+                                        <% uniqueCategory.forEach(category => { %>
+                                            <option value="<%=category%>"><%=category%></option>
+                                        <% }); %> 
+                                    </select>
+                                    <input style="outline: none; display: none;" id="ncategoryi" type="text">
+                                    <div style="display: none;" onclick="cancel()" id="cancel">X</div>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="info-text">Product Info</div>
+                                <textarea name="productInfo" id="ninfo" cols="30" rows="10" placeholder="Product Info"></textarea>
+                            </div>
+                            <div class="save-button" onclick="createProduct()">Create Product</div>
+                        </div>
+                        <div class="product-search">
+                            <div>Search Product: </div>
+                            <input id="productsearch" onkeyup="search()" type="text">
+                        </div>
+                        <%product.forEach(prod => {%>
+                        <div class="product">
+                            <div class="product-image">
+                                <div class="image-text">Product Images Suggested Size(1024 X 1365)</div>
+                                <input data-value="<%=prod.productid%>" style="width: 100%;" type="file" onchange="imageData(this)" name="productImage" id="imgInp2" multiple>
+                                <div style="align-items: center;" class="image-images" id="<%=prod.productid%>">
+                                    <%prod.productimages.forEach(image => { %>
+                                        <img data-value="<%=image.image%>" onclick="productImageDelete(this.getAttribute('data-value'))" class="image-image" src="../public/img/<%=image.image%>"/>
+                                    <% }); %>
+                                </div>
+                            </div>
+                            <div class="product-data">
+                                <div class="product-head">
+                                    <div class="head-text">Product Name</div>
+                                    <input data-value="<%=prod.productid%> type="text" value="<%=prod.producthead%>"/>
+                                </div>
+                                <div class="product-price">
+                                    <div class="price-text">Product Price</div>
+                                    <input data-value="<%=prod.productid%> type="number" value="<%=prod.productprice%>"/>
+                                </div>
+                                <div class="product-stock">
+                                    <div class="stock-text">Product Stock</div>
+                                    <input data-value="<%=prod.productid%> type="number" value="<%=prod.productstock%>"/>
+                                </div>
+                                <div class="product-category">
+                                    <div class="stock-text">Product Category</div>
+                                    <select data-value="<%=prod.productid%>" onclick="test(this)" id="ncategory" style="outline: none;">
+                                        <option value="<%=prod.productcategory%>"><%=prod.productcategory%></option>
+                                        <option value="new">Create New</option>
+                                        <% var productCategory = product.map(x => x.productcategory) %>
+                                        <% var uniqueCategory = [...new Set(productCategory)] %>
+                                        <% uniqueCategory.forEach(category => { if(category == prod.productcategory){return}%>
+                                            <option value="<%=category%>"><%=category%></option>
+                                        <% }); %> 
+                                    </select>
+                                    <input data-value="<%=prod.productid%>" style="outline: none; display: none;" id="ncategoryi" type="text">
+                                    <button data-value="<%=prod.productid%>" style="display: none;" onclick="cancelp(this.getAttribute('data-value'))" id="cancel">X</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="info-text">Product Info</div>
+                                <textarea data-value="<%=prod.productid%> name="productInfo" id="" cols="30" rows="10"><%=prod.productinfo%></textarea>
+                            </div>
+                            <div class="button-keeper">
+                                <div class="save-button" data-value="<%=prod.productid%>" onclick="saveChanges(this.getAttribute('data-value'))">Save Changes</div>
+                                <div class="delete-button" data-value="<%=prod.productid%>" onclick="deleteProduct(this.getAttribute('data-value'))">Delete Product</div>
+                            </div>
+                        </div>
+                       <% }); %>
+                    </div>
+                </aside>
+            </div>
+            <%-include('./component/footer')%> 
+            <script src="../public/script/products.js"></script>
+        </body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "seecommerce",
+  "version": "1.0.0",
+  "description": "Open Source Ecommerce",
+  "main": "ecommerce.js",
+  "author": "Enes Altaş",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "connect-mongodb-session": "^3.1.1",
+    "crypto": "^1.0.1",
+    "ddos": "^0.2.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.3.1",
+    "express-ip": "^1.0.4",
+    "express-session": "^1.17.2",
+    "express-upload": "^0.1.0",
+    "express-validator": "^6.9.2",
+    "fs": "0.0.1-security",
+    "get-json": "^1.0.1",
+    "joi": "^17.6.0",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.2",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "start": "nodemon ecommerce.js"
+  }
+}

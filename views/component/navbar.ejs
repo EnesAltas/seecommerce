@@ -1,0 +1,21 @@
+<div class="navbar">
+    <a style="color: black;" href="/"><div class="brand-logo"><%=shopconfig.shopname%></div></a>
+    <div class="search-box">
+        <div class="search-input">
+            <input id="search-input" onkeyup="searchBox(this.value)" type="text" placeholder="What do you want ?"/>
+            <div class="results">
+                <ul id="result_output"></ul>
+            </div>
+        </div>
+        <div class="search-button">
+            <button onclick="window.location.href = `../search/${document.getElementById('search-input').value}`" type="submit">Search</button>
+        </div>
+    </div>
+    <div class="user-cart">
+        <ul>
+            <li>
+                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Your Cart</a>
+            </li>
+        </ul>
+    </div>
+</div>

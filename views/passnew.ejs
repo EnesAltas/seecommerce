@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%-include('./component/head')%>
+        <link rel="stylesheet" type="text/css" href="../public/css/passnew.css" />
+        <script type="text/javascript">
+
+          function sleep(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms));
+          }
+          $(document).ready(function(){
+      
+            $( "#form" ).submit(function(event) {
+              event.preventDefault();
+      
+              $.ajax({
+                type: 'POST',
+                url: '/passnewer',
+                data: $('#form').serialize(),
+                dataType: "json",
+                success: async function(response){
+                  $('#form')[0].reset();
+                  document.getElementById("check").innerHTML=response.Success;
+                  document.getElementById("check").style.display="-webkit-flex";
+                        await sleep(3000);
+                         if (response.redirect=="true") {
+                          window.location.replace("/login");
+                         };
+                       },
+                       error: function() {
+                       }
+                     })
+            });
+          });
+        </script>
+      </head>
+    <body>
+    <div class="login-page">
+      <div class="form">
+        <form style="padding-bottom: 15px;" id="form" class="register-form" method="POST">
+          <input type="password" id="pasword" name="password" placeholder="Password" required="" class="form-control" onChange="onChange()"><br/>
+          <input type="password" name="confirm_password"  placeholder="Confirm Password" id="confirm_password" required="" onChange="onChange()"/>
+          <input type="text" name="token" style="display: none;" value="<%=passtoken%>">
+          <button type="submit">RESET YOUR PASSWORD</button>
+          </form>
+          <span id="check"></span>
+      </div>
+    </div>
+    <script src="/public/script/passnew.js"></script>
+    </body>
+    </html>

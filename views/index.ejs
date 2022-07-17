@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <%-include('./component/head')%>
+    <link rel="stylesheet" href="../public/css/index.css">
+</head>
+<body>
+    <%if(sess.sessid){ %>
+        <%-include('./component/topinfo')%> 
+    <%}else{ %> 
+        <%-include('./component/topinfonotlogin')%> 
+    <% } %> 
+    <%-include('./component/navbar')%>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <% shopconfig.shopbannerimages.forEach(banner => {%>
+                <div class="swiper-slide">
+                    <img src="../public/img/shop/<%=banner.imagen %>"/>
+                </div>
+            <% }); %>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="slider-keeper">
+        <div class="slider-products">
+            <div class="slider-head">PRODUCTS</div>
+            <div class="product-keeper">
+                <% if(product){ %> 
+                    <%for (let i = 0; i <= 4; i++) {%>
+                        <% if(product[i]){ %> 
+                        <a href="/product/<%=product[i].url %> ">
+                            <div class="slider-product">
+                                <img src="../public/img/<% if(product[i].productimages[0]){ %><%=product[i].productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
+                                <div class="product-title"><%=product[i].producthead %></div>
+                                <div class="prodct-price"><%=product[i].productprice %><%=shopconfig.shopcurrency%></div>
+                            </div>
+                        </a>
+                        <%}%>
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="button-keeper">
+                <a class="shop-button" href="/products/allproducts">VIEW MORE</a>
+            </div>
+        </div>
+    </div>
+    <div class="special-offer">
+        <div class="offer-keeper">
+            <div class="slider-head">LİMİTED TİME SPECİAL OFFERS</div>
+            <div>UP TO 50% DISCOUNT</div>
+            <div class="time">
+                <div class="time-el">
+                    <div class="day"></div>
+                    <div style="font-size: 12px;">DAYS</div>
+                </div>
+                <div class="time-el">
+                    <div class="hour"></div>
+                    <div style="font-size: 12px;">HOURS</div>
+                </div>
+                <div class="time-el">
+                    <div class="minute"></div>
+                    <div style="font-size: 12px;">MINUTES</div>
+                </div>
+                <div class="time-el">
+                    <div class="second"></div>
+                    <div style="font-size: 12px;">SECONDS</div>
+                </div>
+            </div>
+            <a class="shop-button" href="/special">SHOP NOW!</a>
+        </div>
+    </div>
+    <div class="slider-keeper">
+        <div class="slider-products">
+            <div class="slider-head">TOP SELLING</div>
+            <div class="product-keeper">
+                <% if(product){ %> 
+                    <%for (let i = 0; i <= 4; i++) {%>
+                        <% if(product[i]){ %> 
+                        <a href="/product/<%=product[i].url %> ">
+                            <div class="slider-product">
+                                <img src="../public/img/<% if(product[i].productimages[0]){ %><%=product[i].productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
+                                <div class="product-title"><%=product[i].producthead %></div>
+                                <div class="prodct-price"><%=product[i].productprice %><%=shopconfig.shopcurrency%></div>
+                            </div>
+                        </a>
+                        <%}%>
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="button-keeper">
+                 <a class="shop-button" href="/topsell">VIEW MORE</a>
+            </div>
+        </div>
+    </div>
+    <%-include('./component/footer')%>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="../public/script/script.js"></script>
+</body>
+</html>

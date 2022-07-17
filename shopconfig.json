@@ -1,0 +1,14 @@
+{
+    "shopname": "TEST SHOP",
+    "shopdomain": "testshop.com",
+    "shopmail": "info@testshop.com",
+    "shopphone": "123 456 78 90",
+    "shopcurrency": "$",
+    "shopabout": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nam quis quibusdam architecto! Maxime nulla nam veniam, perspiciatis veritatis ducimus inventore illum commodi, corporis adipisci odio delectus dignissimos omnis aut?",
+    "shopthumbnail": "Shopthumbnail.png",
+    "shopbannerimages": [
+        {
+            "imagen": "A451b44c-0292-41e5-91b5-9459c83d6bef.jpeg"
+        }
+    ]
+}

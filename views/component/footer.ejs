@@ -1,0 +1,28 @@
+<footer>
+    <div class="footer-info">
+        <div class="about">
+            <h1 style="text-indent: 8px;">About Us</h1>
+            <p><%=shopconfig.shopabout%></p>
+        </div>
+        <div class="contact">
+            <h1 style="text-indent: 8px;">Categories</h1>
+            <div style="display: flex; align-items: center;">
+                <ul>
+                    <% var nc = [...new Set(productcategory)] %> 
+                    <%for (let i = 0; i < 4; i++) {%>
+                        <a href="../products/<%=nc[i]%>"><li><%=nc[i]%></li></a>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div class="follow-us">
+            <h1 style="text-indent: 8px;">Info</h1>
+            <div style="display: flex; align-items: center;">
+                <ul>
+                    <li>T-shirt</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <p class="copyright">© copyright <%=shopconfig.shopdomain%> 2021</p>
+</footer>

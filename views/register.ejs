@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./component/head')%>
+    <link rel="stylesheet" type="text/css" href="../public/css/register.css"/>
+    <script type="text/javascript">
+      $(document).ready(function(){
+  
+        $( "#form" ).submit(function(event) {
+          event.preventDefault();
+  
+          $.ajax({
+            type: 'POST',
+            url: '/usercreate',
+            data: $('#form').serialize(),
+            dataType: "json",
+            success: function(response){
+              document.getElementById("check").innerHTML=response.Success;
+              document.getElementById("check").style.display= "-webkit-flex";
+                     if (response.Success=="Success!") {
+                      window.location.replace("/login");
+                     };
+                   },
+                   error: function() {
+                   }
+                 })
+        });
+  
+      });
+    </script>
+  </head>
+<body>
+<div class="login-page">
+  <div class="form">
+    <form id="form" class="register-form" method="POST" style="padding-bottom: 15px; padding-top: 20px;">
+      <input type="email" name="email" placeholder="E-Mail" required="" class="form-control"><br/>
+      <input type="text" id="username" autocomplete="off" name="username" placeholder="Username" required="" class="form-control" onChange="onChange()"><br/>
+      <ul class="validate hide" id="validate">
+	  <li>Your username should contains a minimum of 6 and a maximum of 12 characters.</li>
+	  </ul>
+	  <input type="password" id="password" name="password" placeholder="Password" required="" class="form-control" onChange="onChange()"/><br/>
+      <ul class="validate hide" id="validate2">
+	  <li>Your password must consist of at least 6 characters.</li>
+	  <li>It must contain a capital letter.</li>
+	  <li>It must contain one digit.</li>
+	  </ul>
+	  <input type="password" name="confirm_password"  placeholder="Confirm Password" id="confirm_password" required="" onChange="onChange()"/>
+      <button class="form-button" type="submit">Create Account</button>
+      </form>
+      <span id="check"></span>
+      <p class="message">Are you have already account ?  <a href="login">Login</a></p>
+  </div>
+</div>
+<script src="./public/script/register.js"></script>
+</body>
+</html>
