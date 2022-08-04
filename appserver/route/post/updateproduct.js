@@ -18,6 +18,7 @@ router
                         product.producthead = req.body.nhead
                         product.productprice = Number(req.body.nprice)
                         product.productstock = Number(req.body.nstock)
+                        product.productdiscount = Number(req.body.ndiscount)
                         product.productinfo = req.body.ninfo
                         product.productcategory = req.body.ncategory
                         product.url = url

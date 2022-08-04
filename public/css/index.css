@@ -215,6 +215,17 @@ i{
   height: 250px;
 }
 
+.normal-price{
+  text-decoration-line: line-through;
+  text-decoration-color: red;
+  text-decoration-thickness: 1px;
+  font-size: 18px;
+}
+
+.discount-price{
+  font-size: 20px;
+}
+
 .special-offer{
   display: flex;
   justify-content: center;

@@ -39,6 +39,10 @@
                                     <div class="stock-text">Product Stock</div>
                                     <input id="nstock" placeholder="Product Stock Count" type="number"/>
                                 </div>
+                                <div class="product-discount">
+                                    <div class="discount-text">Product Discount(%)</div>
+                                    <input id="ndiscount" placeholder="Product Discount %" type="number"/>
+                                </div>
                                 <div class="product-category">
                                     <div class="stock-text">Product Category</div>
                                     <select id="ncategory" style="outline: none;">
@@ -78,15 +82,19 @@
                             <div class="product-data">
                                 <div class="product-head">
                                     <div class="head-text">Product Name</div>
-                                    <input data-value="<%=prod.productid%> type="text" value="<%=prod.producthead%>"/>
+                                    <input data-value="<%=prod.productid%>" type="text" value="<%=prod.producthead%>"/>
                                 </div>
                                 <div class="product-price">
                                     <div class="price-text">Product Price</div>
-                                    <input data-value="<%=prod.productid%> type="number" value="<%=prod.productprice%>"/>
+                                    <input data-value="<%=prod.productid%>" type="number" value="<%=prod.productprice%>"/>
                                 </div>
                                 <div class="product-stock">
                                     <div class="stock-text">Product Stock</div>
-                                    <input data-value="<%=prod.productid%> type="number" value="<%=prod.productstock%>"/>
+                                    <input data-value="<%=prod.productid%>" type="number" value="<%=prod.productstock%>"/>
+                                </div>
+                                <div class="product-discount">
+                                    <div class="discount-text">Product Discount(%)</div>
+                                    <input data-value="<%=prod.productid%>" type="number" value="<%=prod.productdiscount%>"/>
                                 </div>
                                 <div class="product-category">
                                     <div class="stock-text">Product Category</div>
@@ -105,7 +113,7 @@
                             </div>
                             <div class="product-info">
                                 <div class="info-text">Product Info</div>
-                                <textarea data-value="<%=prod.productid%> name="productInfo" id="" cols="30" rows="10"><%=prod.productinfo%></textarea>
+                                <textarea data-value="<%=prod.productid%>" name="productInfo" id="" cols="30" rows="10"><%=prod.productinfo%></textarea>
                             </div>
                             <div class="button-keeper">
                                 <div class="save-button" data-value="<%=prod.productid%>" onclick="saveChanges(this.getAttribute('data-value'))">Save Changes</div>

@@ -84,6 +84,7 @@ function createProduct(){
   var nhead = document.getElementById('nhead').value;
   var nprice = document.getElementById('nprice').value;
   var nstock = document.getElementById('nstock').value;
+  var ndiscount = document.getElementById('ndiscount').value;
   var ninfo = document.getElementById('ninfo').value;
   var ncategory;
 
@@ -94,7 +95,7 @@ function createProduct(){
   }
 
     var data = new FormData()
-    if(pfile.length !== 0 && nhead && nprice && nstock && ninfo && ncategory){
+    if(pfile.length !== 0 && nhead && nprice && nstock && ninfo && ncategory && ndiscount){
       for (let i = 0; i < imgInp.files.length; i++) {
         var nfile = imgInp.files[i]
         if (nfile) {
@@ -104,6 +105,7 @@ function createProduct(){
       data.append('nhead', nhead)
       data.append('nprice', nprice)
       data.append('nstock', nstock)
+      data.append('ndiscount', ndiscount)
       data.append('ninfo', ninfo)
       data.append('ncategory', ncategory)
       fetch(`/createproduct`, {
@@ -203,6 +205,7 @@ function saveChanges(productId){
     var nhead = selector[1].value
     var nprice = selector[2].value
     var nstock = selector[3].value
+    var ndiscount = selector[4].value
     var ninfo = selector[7].value
     var ncategory;
 
@@ -219,6 +222,7 @@ function saveChanges(productId){
         data.append('nhead', nhead)
         data.append('nprice', nprice)
         data.append('nstock', nstock)
+        data.append('ndiscount', ndiscount)
         data.append('ninfo', ninfo)
         data.append('ncategory',ncategory)
         fetch(`/updateproduct`, {

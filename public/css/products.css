@@ -315,6 +315,11 @@ i {
   outline: none;
 }
 
+.product-discount input {
+  max-width: 100px;
+  outline: none;
+}
+
 .product-info textarea {
   width: 300px;
   max-width: 680px;

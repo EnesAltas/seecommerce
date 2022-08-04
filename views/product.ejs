@@ -35,7 +35,14 @@
                 <div class="product-name">
                     <h2><%=product.producthead%></h2>
                 </div>
-                <div class="product-price"><%=product.productprice%><%=shopconfig.shopcurrency%></div>
+                <div class="product-price">
+                    <%if(product.productdiscount > 0){%>
+                        <div class="normal-price"><%=product.productprice%><%=shopconfig.shopcurrency%></div>
+                        <div class="discount-price"><%=product.productprice-(product.productprice*(product.productdiscount/100))%><%=shopconfig.shopcurrency%></div>
+                    <%}else{%>
+                        <div class="discount-price"><%=product.productprice %><%=shopconfig.shopcurrency%></div>
+                    <%}%>
+                </div>
                 <div class="product-about">
                     <h1>Product Info</h1>
                     <p><%=product.productinfo%></p>

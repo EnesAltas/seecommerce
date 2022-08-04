@@ -25,6 +25,7 @@ router
                         productprice:req.body.nprice,
                         productstock:req.body.nstock,
                         productcategory:req.body.ncategory,
+                        productdiscount:req.body.ndiscount,
                         url: url
                       })
                       await product.save()

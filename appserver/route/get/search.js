@@ -16,7 +16,7 @@ router.get('/search/:search',function(req,res){
     }
 
     Product.find(function(err,product){
-        Product.find({producthead: new RegExp(req.params.search, "i")},{"_id":0,"producthead":1,"url":1,"productprice":1,"productimages":1}).lean().exec(function(err,data){
+        Product.find({producthead: new RegExp(req.params.search, "i")},{"_id":0,"producthead":1,"url":1,"productprice":1,"productdiscount":1,"productimages":1}).lean().exec(function(err,data){
                 var productcategory;
                 productcategory = product.map(x => x.productcategory)
                     res.render('allproducts',{

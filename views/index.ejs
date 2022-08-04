@@ -32,7 +32,14 @@
                             <div class="slider-product">
                                 <img src="../public/img/<% if(product[i].productimages[0]){ %><%=product[i].productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
                                 <div class="product-title"><%=product[i].producthead %></div>
-                                <div class="prodct-price"><%=product[i].productprice %><%=shopconfig.shopcurrency%></div>
+                                <div class="prodct-price">
+                                    <%if(product[i].productdiscount > 0){%>
+                                        <div class="discount-price"><%=product[i].productprice-(product[i].productprice*(product[i].productdiscount/100))%><%=shopconfig.shopcurrency%></div>
+                                        <div class="normal-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
+                                    <%}else{%>
+                                        <div class="discount-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
+                                    <%}%>
+                                </div>
                             </div>
                         </a>
                         <%}%>
@@ -80,7 +87,14 @@
                             <div class="slider-product">
                                 <img src="../public/img/<% if(product[i].productimages[0]){ %><%=product[i].productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
                                 <div class="product-title"><%=product[i].producthead %></div>
-                                <div class="prodct-price"><%=product[i].productprice %><%=shopconfig.shopcurrency%></div>
+                                <div class="prodct-price">
+                                    <%if(product[i].productdiscount > 0){%>
+                                        <div class="discount-price"><%=product[i].productprice-(product[i].productprice*(product[i].productdiscount/100))%><%=shopconfig.shopcurrency%></div>
+                                        <div class="normal-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
+                                    <%}else{%>
+                                        <div class="discount-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
+                                    <%}%>
+                                </div>
                             </div>
                         </a>
                         <%}%>

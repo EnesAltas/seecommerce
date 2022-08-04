@@ -20,7 +20,15 @@
                         <div class="slider-product">
                             <img src="../public/img/<% if(prod.productimages[0]){ %><%=prod.productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
                             <div class="product-title"><%=prod.producthead %></div>
-                            <div class="prodct-price"><%=prod.productprice %><%=shopconfig.shopcurrency%></div>
+                            <div class="prodct-price">
+                                <% console.log(prod) %> 
+                                <%if(prod.productdiscount > 0){%>
+                                    <div class="discount-price"><%=prod.productprice-(prod.productprice*(prod.productdiscount/100))%><%=shopconfig.shopcurrency%></div>
+                                    <div class="normal-price"><%=prod.productprice%><%=shopconfig.shopcurrency%></div>
+                                <%}else{%>
+                                    <div class="discount-price"><%=prod.productprice%><%=shopconfig.shopcurrency%></div>
+                                <%}%>
+                            </div>
                         </div>
                     </a>
                 <%});%>

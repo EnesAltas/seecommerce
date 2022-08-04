@@ -8,6 +8,7 @@ var productSchema = new Schema({
     productstock:Number,
     productinfo:String,
     productcategory:String,
+    productdiscount:Number,
     url:String,
     productimages:[{image:String,_id:false}],
 })
