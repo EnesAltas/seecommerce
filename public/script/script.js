@@ -15,7 +15,15 @@ var swiper = new Swiper(".swiper", {
     },
 });
 
-var upgradeTime = 1000;
+var inputdate = document.querySelector('input[name=event-date]');
+var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().split('.')[0]
+var offertime = document.getElementsByClassName('special-offer')[0].getAttribute('data-value')
+
+var t = String(new Date(offertime).getTime()).slice(0,-3)
+var y = String(new Date(localISOTime).getTime()).slice(0,-3)
+
+var upgradeTime = Number(t) - Number(y);
 var seconds = upgradeTime;
 function timer() {
   var days        = Math.floor(seconds/24/60/60);
@@ -31,9 +39,10 @@ function timer() {
     document.getElementsByClassName('hour')[0].innerHTML =  pad(hours);
     document.getElementsByClassName('minute')[0].innerHTML = pad(minutes);
     document.getElementsByClassName('second')[0].innerHTML = pad(remainingSeconds);
-  if (seconds == 0) {
+  if (seconds == 0 || seconds < 0) {
     clearInterval(countdownTimer);
-    document.getElementsByClassName('time')[0].innerHTML = "END OF THE SPECİAL OFFER";
+    document.getElementsByClassName('time')[0].innerHTML = "END OF THE SPECIAL OFFER";
+    document.getElementsByClassName('special')[0].style.display = "none"
   } else {
     seconds--;
   }

@@ -14,46 +14,6 @@ leftMenuButton.addEventListener('click', async () => {
   leftMenu.classList.toggle('active')
 })
 
-const saveButton = document.getElementsByClassName('save-button')[0];
-
-saveButton.addEventListener('click',() =>{
-  var userid = document.getElementsByTagName('meta')[0].content;
-  var oldpassword = document.getElementsByName("oldpassword")[0].value;
-  var password = document.getElementsByName("newpassword")[0].value;
-  var confirmation = document.getElementsByName("repassword")[0].value;
-  if(!oldpassword,!password,!confirmation){
-    document.getElementById("notify").innerHTML="Kaydedilecek bir şey yok!";
-    document.getElementsByClassName("notify-keep")[0].style.display= "flex";
-  }
-  if(oldpassword,password,confirmation){
-    changePass(userid,oldpassword,password,confirmation);
-  }
-})
-
-function changePass(userid,oldpassword,password,confirmation){
-	var data = new FormData()
-	if(userid,oldpassword,password,confirmation){
-		data.append('userid', userid)
-		data.append('oldpassword', oldpassword)
-		data.append('password', password)
-    data.append('confirmation', confirmation)
-		fetch(`/userchangepass`, {
-        method: 'POST',
-		    body: data,
-	}).then((response) => response.json())
-  .then((result) => {
-  console.log('Success:', result);
-  document.getElementById("notify").innerHTML=result.Success;
-  document.getElementsByClassName("notify-keep")[0].style.display= "flex";
-    if(result.Reload === "True"){
-      setTimeout(function(){
-        location.reload();
-      }, 3500);
-    }
-	})
-	}
-}
-
 function searchBox(product){
   var resultbox = document.getElementsByClassName('results')[0]
 

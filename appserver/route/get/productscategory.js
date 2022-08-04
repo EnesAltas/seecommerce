@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router();
 var Product = require('../../../models/dbmodels/product');
+var Event = require('../../../models/dbmodels/event');
 const fs = require('fs');
 var util = require('util');
 
@@ -13,6 +14,27 @@ router.get('/products/:category',function(req,res){
     
     if(!req.session.cart){
         req.session.cart = [];
+    }
+
+    if(req.params.category == 'special'){
+        Product.find(function(err,product){
+            Event.find(function(err,event){
+                Product.find({productdiscount:event[0].eventdiscount},function(err,products){
+
+                    var productcategory;
+                    productcategory = product.map(x => x.productcategory)
+    
+                    res.render('allproducts',{
+                        head:'All Special Products',
+                        sess: req.session,
+                        product: products,
+                        productcategory:productcategory,
+                        shopconfig:shopconfig
+                    });
+                }).clone()
+            })
+        })
+        return;
     }
 
     if(req.params.category == 'allproducts'){

@@ -51,61 +51,63 @@
             </div>
         </div>
     </div>
-    <div class="special-offer">
-        <div class="offer-keeper">
-            <div class="slider-head">LİMİTED TİME SPECİAL OFFERS</div>
-            <div>UP TO 50% DISCOUNT</div>
-            <div class="time">
-                <div class="time-el">
-                    <div class="day"></div>
-                    <div style="font-size: 12px;">DAYS</div>
+    <% if(event[0]){ %>
+        <div class="special-offer" data-value="<%if(event){%><%=event[0].eventenddate%><%}%>">
+            <div class="offer-keeper">
+                <div class="slider-head"><%if(event){%><%=event[0].eventhead%><%}%></div>
+                <div><%if(event){%><%=event[0].eventdescription%><%}%></div>
+                <div class="time">
+                    <div class="time-el">
+                        <div class="day"></div>
+                        <div style="font-size: 12px;">DAYS</div>
+                    </div>
+                    <div class="time-el">
+                        <div class="hour"></div>
+                        <div style="font-size: 12px;">HOURS</div>
+                    </div>
+                    <div class="time-el">
+                        <div class="minute"></div>
+                        <div style="font-size: 12px;">MINUTES</div>
+                    </div>
+                    <div class="time-el">
+                        <div class="second"></div>
+                        <div style="font-size: 12px;">SECONDS</div>
+                    </div>
                 </div>
-                <div class="time-el">
-                    <div class="hour"></div>
-                    <div style="font-size: 12px;">HOURS</div>
-                </div>
-                <div class="time-el">
-                    <div class="minute"></div>
-                    <div style="font-size: 12px;">MINUTES</div>
-                </div>
-                <div class="time-el">
-                    <div class="second"></div>
-                    <div style="font-size: 12px;">SECONDS</div>
-                </div>
+                <a class="shop-button special" href="/products/special">SHOP NOW!</a>
             </div>
-            <a class="shop-button" href="/special">SHOP NOW!</a>
         </div>
-    </div>
-    <div class="slider-keeper">
-        <div class="slider-products">
-            <div class="slider-head">TOP SELLING</div>
-            <div class="product-keeper">
-                <% if(product){ %> 
-                    <%for (let i = 0; i <= 4; i++) {%>
-                        <% if(product[i]){ %> 
-                        <a href="/product/<%=product[i].url %> ">
-                            <div class="slider-product">
-                                <img src="../public/img/<% if(product[i].productimages[0]){ %><%=product[i].productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
-                                <div class="product-title"><%=product[i].producthead %></div>
-                                <div class="prodct-price">
-                                    <%if(product[i].productdiscount > 0){%>
-                                        <div class="discount-price"><%=product[i].productprice-(product[i].productprice*(product[i].productdiscount/100))%><%=shopconfig.shopcurrency%></div>
-                                        <div class="normal-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
-                                    <%}else{%>
-                                        <div class="discount-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
-                                    <%}%>
+        <div class="slider-keeper">
+            <div class="slider-products">
+                <div class="slider-head">TOP SELLING</div>
+                <div class="product-keeper">
+                    <% if(product){ %> 
+                        <%for (let i = 0; i <= 4; i++) {%>
+                            <% if(product[i]){ %> 
+                            <a href="/product/<%=product[i].url %> ">
+                                <div class="slider-product">
+                                    <img src="../public/img/<% if(product[i].productimages[0]){ %><%=product[i].productimages[0].image%><%}else{%>imagenotavailable.jpg<% } %>"/>
+                                    <div class="product-title"><%=product[i].producthead %></div>
+                                    <div class="prodct-price">
+                                        <%if(product[i].productdiscount > 0){%>
+                                            <div class="discount-price"><%=product[i].productprice-(product[i].productprice*(product[i].productdiscount/100))%><%=shopconfig.shopcurrency%></div>
+                                            <div class="normal-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
+                                        <%}else{%>
+                                            <div class="discount-price"><%=product[i].productprice%><%=shopconfig.shopcurrency%></div>
+                                        <%}%>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                            <%}%>
                         <%}%>
                     <%}%>
-                <%}%>
+                </div>
+                <div class="button-keeper">
+                     <a class="shop-button" href="/topsell">VIEW MORE</a>
+                </div>
             </div>
-            <div class="button-keeper">
-                 <a class="shop-button" href="/topsell">VIEW MORE</a>
-            </div>
-        </div>
-    </div>
+        </div>    
+    <% } %>  
     <%-include('./component/footer')%>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="../public/script/script.js"></script>

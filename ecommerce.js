@@ -74,6 +74,7 @@ var products = require('./appserver/route/get/products');
 var orders = require('./appserver/route/get/orders');
 var shopsettings = require('./appserver/route/get/shopsettings');
 var productscategory = require('./appserver/route/get/productscategory');
+var createevent = require('./appserver/route/get/createevent');
 
 //admin login get methods
 var login = require('./appserver/route/get/login');
@@ -98,6 +99,8 @@ var deleteproductimage = require('./appserver/route/post/deleteproductimage');
 var updateproductimage = require('./appserver/route/post/updateproductimage');
 var search = require('./appserver/route/post/search');
 var searchP = require('./appserver/route/get/search');
+var createeventP = require('./appserver/route/post/createevent');
+var deleteevent = require('./appserver/route/post/deleteevent');
 
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
@@ -128,6 +131,7 @@ app.use(login);
 app.use(forgotpass);
 app.use(register);
 app.use(passnew);
+app.use(createevent);
 
 //post methods
 app.use(logout);
@@ -145,6 +149,8 @@ app.use(shopsettingsP);
 app.use(deleteproductimage);
 app.use(updateproductimage);
 app.use(search);
+app.use(createeventP);
+app.use(deleteevent);
 
 app.use('/', (req,res) => {
     res.status(404).render('404',{

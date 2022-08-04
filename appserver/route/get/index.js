@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router();
 var Product = require('../../../models/dbmodels/product');
+var Event = require('../../../models/dbmodels/event');
 const fs = require('fs');
 
 router.use(function(req,res,next){
@@ -13,13 +14,16 @@ router.get('/',function(req,res){
         req.session.cart = [];
     }
     Product.find(function(err,product){
-        productcategory = product.map(x => x.productcategory)
-        res.render('index',{
-            head:'Home',
-            sess: req.session,
-            product: product,
-            productcategory:productcategory,
-            shopconfig:shopconfig
+        Event.find(function(err,event){
+            productcategory = product.map(x => x.productcategory)
+            res.render('index',{
+                head:'Home',
+                sess: req.session,
+                product: product,
+                event:event,
+                productcategory:productcategory,
+                shopconfig:shopconfig
+            });
         });
     })
 });

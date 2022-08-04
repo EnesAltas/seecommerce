@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <%-include('./component/head')%> 
+        <link rel="stylesheet" type="text/css" href="../public/css/createevent.css"/>
+      </head>
+      <% if(!event){ %>
+      <% event = []  %>   
+      <% } %>  
+        <body>
+            <%-include('./component/topinfo')%>
+            <%-include('./component/navbar')%>
+            <div class="side-keeper">
+                <div class="opener"> > </div>
+                <%-include('./component/menuadmin')%>
+                <aside class="main">
+                    <h1 style="color: #D10024; font-family: 'Poppins'; margin-bottom: 10px;"><i class="fa-solid fa-tag"></i>Event</h1>
+                    <div class="create-event-keeper">
+                        <div style="margin-bottom: 20px;" class="event-inputs">
+                            <div class="event-head-input">
+                                <div>Event Head</div>
+                                <input id="eventhead" type="text" placeholder="Event Head" value="<%=event.eventhead%>" required/>
+                            </div>
+                            <div class="event-description-input">
+                                <div>Event Description</div>
+                                <input id="eventdescription" type="text" placeholder="Event Description" value="<%=event.eventdescription%>" required/>
+                            </div>
+                            <div class="event-discount-input">
+                                <div>Event Discount (%)</div>
+                                <input style="width: 207px;" id="eventdiscount" type="number" placeholder="Event Discount Percent" min="0" max="100" value="<%=event.eventdiscount%>" required/>
+                            </div>
+                            <div class="event-end-date">
+                                <div>Event End Date</div>
+                                <input id="eventdate" name="event-date" type="datetime-local" value="<%=event.eventenddate%>" required/>
+                            </div>
+                            <div class="event-products-input">
+                                <div>Event Affected Products</div>
+                                <input type="checkbox" id="all" name="all" value="all">
+                                <label for="all"> All Products</label><br>
+                                <div class="event-products">
+                                    <% product.forEach(prod => { %>
+                                        <% if(event.length != 0){
+                                            var query = event.products.find(product => product === prod.productid)
+                                        } %>
+                                        <% if(query){%>
+                                            <input type="checkbox" id="<%=prod.productid %>" name="<%=prod.productid %>" value="<%=prod.productid %>" checked>
+                                            <label for="<%=prod.productid %>"><%=prod.producthead %></label><br>
+                                        <% }else{ %>
+                                            <input type="checkbox" id="<%=prod.productid %>" name="<%=prod.productid %>" value="<%=prod.productid %>">
+                                            <label for="<%=prod.productid %>"><%=prod.producthead %></label><br>
+                                        <% } %>   
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap;" class="button-keeper">
+                            <div class="save-button" onclick="createEvents()">Create Event</div>
+                            <div class="delete-button" onclick="deleteEvents()">Delete Event</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <%-include('./component/footer')%> 
+            <script src="../public/script/createevent.js"></script>
+        </body>
+</html>
